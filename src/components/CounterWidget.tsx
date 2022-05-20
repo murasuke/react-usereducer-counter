@@ -21,14 +21,13 @@ const counterSlice = createSlice({
 });
 
 const CounterWidget: VFC<{ initialCount?: number }> = ({ initialCount = 0 }) => {
-  const [state, dispatch] = useReducer(
+  const [{ count }, dispatch] = useReducer(
     counterSlice.reducer,
     initialCount,
-    (count: number): CounterState => ({ count }),
+    (init: number): CounterState => ({ count: init }),
   );
 
   const { added, decremented, incremented } = counterSlice.actions;
-  const { count } = state;
 
   return (
     <>
